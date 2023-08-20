@@ -8,6 +8,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,6 +41,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.artwork.ui.theme.ArtworkTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,55 +62,155 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ArtWorklayout(){
-    Column (modifier = Modifier.fillMaxSize()
-        , horizontalAlignment = Alignment.CenterHorizontally
-        , verticalArrangement = Arrangement.Center
-        ){
-        Box (modifier = Modifier
-            .border(1.dp, Color.Black)
-            ){
-            Image(
-                painter = painterResource(R.drawable.barcalogo),
-                contentDescription = stringResource(
-                    id = R.string.barca_logo
-                ),
-                modifier = Modifier.padding(40.dp).width(width = 250.dp).height(height = 330.dp)
-            )
+fun ArtWorklayout() {
+
+    var presentImage by remember { mutableStateOf(1) }
+
+    when (presentImage) {
+
+
+        1 -> Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Box(modifier = Modifier.shadow(2.dp)) {
+                Image(
+                    painter = painterResource(R.drawable.messi),
+                    contentDescription = stringResource(
+                        id = R.string.barca_logo
+                    ),
+                    modifier = Modifier.padding(40.dp).width(width = 250.dp).height(height = 330.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.padding(10.dp))
+
+            Box(
+                modifier = Modifier
+                    .width(width = 360.dp)
+                    .padding(16.dp, 16.dp)
+                    .border(width = 1.dp, color = Color(226, 226, 226))
+                    .background(Color(226, 226, 226))
+            ) {
+                Column(
+                    modifier = Modifier.padding(12.dp, 8.dp).fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(text = "Lionel Messi", fontSize = 30.sp, fontWeight = FontWeight.Bold)
+                    Spacer(modifier = Modifier.padding(4.dp))
+                    Text(text = "2004 ~ 2021", fontSize = 17.sp)
+                }
+            }
+
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .background(Color(61, 71, 111), shape = MaterialTheme.shapes.extraLarge)
+                        .border(2.dp, Color(61, 71, 111), shape = MaterialTheme.shapes.extraLarge)
+                ) {
+                    Text(
+                        text = "Previous",
+                        fontSize = 13.sp,
+                        modifier = Modifier.padding(35.dp, 10.dp),
+                        color = Color.White
+                    )
+                }
+                Spacer(modifier = Modifier.padding(40.dp, 40.dp))
+                Box(
+                    modifier = Modifier.background(
+                        Color(61, 71, 111), shape = MaterialTheme.shapes.extraLarge
+                    )
+                        .border(
+                            2.dp, Color(61, 71, 111), shape = MaterialTheme.shapes.extraLarge
+                        )
+                        .clickable { presentImage = 2 }
+                )
+                {
+                    Text(
+                        text = "Next",
+                        fontSize = 13.sp,
+                        modifier = Modifier.padding(45.dp, 10.dp),
+                        color = Color.White
+                    )
+                }
+
+            }
+
         }
 
-        Spacer(modifier = Modifier.padding(10.dp))
-
-        Box (modifier = Modifier
-            .width(width = 360.dp)
-            .padding(16.dp, 16.dp)
-            .border(width = 1.dp, color = Color(226, 226, 226))
-            .background(Color(226, 226, 226))){
-            Column(modifier = Modifier.padding(12.dp, 8.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-                Text(text = "FC BARCELONA", fontSize = 30.sp, fontWeight = FontWeight.Bold)
-                Spacer(modifier = Modifier.padding(4.dp))
-                Text(text = "Lionel Messi (2023)", fontSize = 17.sp)
+       2 -> Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Box(modifier = Modifier.shadow(2.dp)) {
+                Image(
+                    painter = painterResource(R.drawable.cruyff),
+                    contentDescription = stringResource(
+                        id = R.string.barca_logo
+                    ),
+                    modifier = Modifier.padding(40.dp).width(width = 250.dp).height(height = 330.dp)
+                )
             }
-        }
 
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(modifier = Modifier.background(Color(61, 71, 111), shape = MaterialTheme.shapes.extraLarge)
-                .border(2.dp, Color(61, 71, 111), shape = MaterialTheme.shapes.extraLarge)) {
-                Text(text = "Previous", fontSize = 13.sp, modifier = Modifier.padding(35.dp, 10.dp), color = Color.White)
+            Spacer(modifier = Modifier.padding(10.dp))
+
+            Box(
+                modifier = Modifier
+                    .width(width = 360.dp)
+                    .padding(16.dp, 16.dp)
+                    .border(width = 1.dp, color = Color(226, 226, 226))
+                    .background(Color(226, 226, 226))
+            ) {
+                Column(
+                    modifier = Modifier.padding(12.dp, 8.dp).fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(text = "Yohan Cruyff", fontSize = 30.sp, fontWeight = FontWeight.Bold)
+                    Spacer(modifier = Modifier.padding(4.dp))
+                    Text(text = "1973 ~ 1978", fontSize = 17.sp)
+                }
             }
-            Spacer(modifier = Modifier.padding(40.dp, 40.dp))
-            Box (modifier = Modifier.background(Color(61, 71, 111)
-                , shape = MaterialTheme.shapes.extraLarge)
-                .border(2.dp, Color(61, 71, 111)
-                    , shape = MaterialTheme.shapes.extraLarge))
-            {
-                Text(text = "Next", fontSize = 13.sp, modifier = Modifier.padding(45.dp, 10.dp), color = Color.White)
+
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .background(Color(61, 71, 111), shape = MaterialTheme.shapes.extraLarge)
+                        .border(2.dp, Color(61, 71, 111), shape = MaterialTheme.shapes.extraLarge)
+                ) {
+                    Text(
+                        text = "Previous",
+                        fontSize = 13.sp,
+                        modifier = Modifier.padding(35.dp, 10.dp),
+                        color = Color.White
+                    )
+                }
+                Spacer(modifier = Modifier.padding(40.dp, 40.dp))
+                Box(
+                    modifier = Modifier.background(
+                        Color(61, 71, 111), shape = MaterialTheme.shapes.extraLarge
+                    )
+                        .border(
+                            2.dp, Color(61, 71, 111), shape = MaterialTheme.shapes.extraLarge
+                        )
+                )
+                {
+                    Text(
+                        text = "Next",
+                        fontSize = 13.sp,
+                        modifier = Modifier.padding(45.dp, 10.dp),
+                        color = Color.White
+                    )
+                }
+
             }
 
         }
 
     }
-
 }
 
 @Preview(showBackground = true)
